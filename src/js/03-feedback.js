@@ -8,8 +8,11 @@ const message = document.querySelector('textarea');
 form.addEventListener('submit', cleanValue);
 
 function cleanValue(event) {
-  console.log(localStorage.getItem('feedback-form-state'));
   event.preventDefault();
+  if (email.value === '' || message.value === '') {
+    return alert('Fill the fields, ok?');
+  }
+  console.log(localStorage.getItem('feedback-form-state'));
   localStorage.removeItem('feedback-form-state');
   form.reset();
 }
@@ -18,7 +21,7 @@ form.addEventListener('input', getValue);
 
 function getValue(event) {
   console.log(event.currentTarget.elements.email.value);
-    console.log(event.currentTarget.elements.message.value);
+  console.log(event.currentTarget.elements.message.value);
   const {
     elements: { email, message },
   } = event.currentTarget;
