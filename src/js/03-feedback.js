@@ -17,15 +17,15 @@ function cleanValue(event) {
   form.reset();
 }
 
-form.addEventListener('input', getValue);
+form.addEventListener('input', throttle(getValue, 500));
 
 function getValue(event) {
-  console.log(event.currentTarget.elements.email.value);
-  console.log(event.currentTarget.elements.message.value);
+//   console.log(event.currentTarget.elements.email.value);
+//   console.log(event.currentTarget.elements.message.value);
   const {
     elements: { email, message },
   } = event.currentTarget;
-  //   console.log(email.value, message.value);
+    console.log(email.value, message.value);
 
   const valuesObject = {
     email: `${email.value}`,
