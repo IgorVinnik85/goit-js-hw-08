@@ -14,13 +14,12 @@ function cleanValue(event) {
   }
   console.log(localStorage.getItem('feedback-form-state'));
   localStorage.removeItem('feedback-form-state');
-  form.reset();
+  event.currentTarget.reset();
 }
 
 form.addEventListener('input', throttle(getValue, 500));
 
 function getValue(event) {
-
   const valuesObject = {
     email: `${email.value}`,
     message: `${message.value}`,
@@ -33,7 +32,9 @@ function updateValue() {
   const savedSettings = localStorage.getItem('feedback-form-state');
   const parsedSettings = JSON.parse(savedSettings);
 
-  email.value = parsedSettings.email;
-  message.value = parsedSettings.message;
+  if (savedSettings) {
+    email.value = parsedSettings.email;
+    message.value = parsedSettings.message
+  };
 }
 updateValue();
